@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>🎓Features | EduTrack</title>
+    <link rel="stylesheet" href="/styles/feature.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Background effects -->
+    <div class="stars"></div>
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="brand">
+            <span class="brand-icon">E</span>
+            EduTrack
+        </a>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/features" class="active">Features</a>
+        </div>
+
+        <a href="/student_log" class="nav-button">Get Started ↗</a>
+    </nav>
+
+    <!-- Hero section -->
+    <main>
+        <section class="hero">
+
+            <div class="hero-content">
+                <span class="eyebrow">
+                    <span class="status-dot"></span>
+                    SMARTER LEARNING STARTS HERE
+                </span>
+
+                <h1>
+                    Everything you need<br>
+                    to <span class="gradient-text">learn smarter.</span>
+                </h1>
+
+                <p class="hero-description">
+                    EduTrack connects students and teachers in one intelligent
+                    platform. Track performance, discover important topics,
+                    and stay ahead of your academic goals.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="/student_log" class="primary-btn">
+                        Explore Student Portal <span>→</span>
+                    </a>
+
+                    <a href="/teacher_log" class="secondary-btn">
+                        Teacher Portal
+                    </a>
+                </div>
+
+                <div class="trust-row">
+                    <div class="trust-icon">✓</div>
+                    <span>Performance tracking</span>
+                    <span class="trust-separator">•</span>
+                    <span>Teacher collaboration</span>
+                </div>
+            </div>
+
+            <!-- CSS 3D Dashboard Model -->
+            <div class="visual-area">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+
+                <div class="floating-label label-top">
+                    <span class="label-icon purple">✦</span>
+                    <div>
+                        <strong>Smart Analytics</strong>
+                        <small>Performance insights</small>
+                    </div>
+                </div>
+
+                <div class="dashboard-3d" id="dashboard3d">
+
+                    <div class="dashboard-topbar">
+                        <div class="mini-brand">
+                            <span class="brand-icon small">E</span>
+                            EduTrack
+                        </div>
+
+                        <div class="window-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-body">
+                        <aside class="mini-sidebar">
+                            <div class="side-active">▦</div>
+                            <div>▤</div>
+                            <div>◷</div>
+                            <div>⚙</div>
+                        </aside>
+
+                        <div class="mini-main">
+                            <div class="mini-heading">
+                                <div>
+                                    <small>STUDENT OVERVIEW</small>
+                                    <h3>My Dashboard</h3>
+                                </div>
+                                <span class="avatar">S</span>
+                            </div>
+
+                            <div class="stat-grid">
+                                <div class="stat-card">
+                                    <span>Overall Progress</span>
+                                    <strong>82%</strong>
+                                    <div class="progress-track">
+                                        <div class="progress-fill purple-fill"></div>
+                                    </div>
+                                </div>
+
+                                <div class="stat-card">
+                                    <span>Topics Reviewed</span>
+                                    <strong>24</strong>
+                                    <small class="positive">Keep it up!</small>
+                                </div>
+                            </div>
+
+                            <div class="chart-card">
+                                <div class="chart-heading">
+                                    <strong>Weekly Performance</strong>
+                                    <span>This week</span>
+                                </div>
+
+                                <svg viewBox="0 0 320 120" class="performance-chart" role="img"
+                                    aria-label="Illustrative weekly performance chart">
+                                    <defs>
+                                        <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#9b7cff" stop-opacity=".45" />
+                                            <stop offset="100%" stop-color="#9b7cff" stop-opacity="0" />
+                                        </linearGradient>
+                                    </defs>
+
+                                    <path d="M0 95 H320 M0 65 H320 M0 35 H320" stroke="#30344f" stroke-dasharray="4 5"
+                                        fill="none" />
+
+                                    <path d="M0 91 C35 80 45 85 75 61
+                                             S120 75 155 47
+                                             S205 60 235 29
+                                             S285 43 320 12
+                                             L320 120 L0 120 Z" fill="url(#chartGradient)" />
+
+                                    <path d="M0 91 C35 80 45 85 75 61
+                                             S120 75 155 47
+                                             S205 60 235 29
+                                             S285 43 320 12" stroke="#a78bfa" stroke-width="3" stroke-linecap="round"
+                                        fill="none" />
+                                </svg>
+
+                                <div class="chart-days">
+                                    <span>Mon</span>
+                                    <span>Tue</span>
+                                    <span>Wed</span>
+                                    <span>Thu</span>
+                                    <span>Fri</span>
+                                    <span>Sat</span>
+                                    <span>Sun</span>
+                                </div>
+                            </div>
+
+                            <div class="topic-preview">
+                                <div class="topic-symbol">✧</div>
+                                <div>
+                                    <strong>Important Topics</strong>
+                                    <small>Teacher-recommended learning</small>
+                                </div>
+                                <span class="topic-arrow">↗</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="floating-label label-bottom">
+                    <span class="label-icon green">↗</span>
+                    <div>
+                        <strong>82% Progress</strong>
+                        <small>Your learning journey</small>
+                    </div>
+                </div>
+
+                <div class="visual-caption">
+                    INTERACTIVE LEARNING EXPERIENCE
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Feature cards -->
+        <section class="features-section">
+            <div class="section-heading">
+                <span class="eyebrow">BUILT FOR YOUR SUCCESS</span>
+                <h2>Powerful features. <span class="gradient-text">One platform.</span></h2>
+                <p>Everything students and teachers need to stay organized and productive.</p>
+            </div>
+
+            <div class="feature-grid">
+
+                <article class="feature-card">
+                    <div class="feature-icon icon-purple">◈</div>
+                    <span class="feature-number">01</span>
+                    <h3>Student Dashboard</h3>
+                    <p>
+                        View your academic progress, subject information,
+                        and learning updates from one personal dashboard.
+                    </p>
+                    <a href="/student_log">Explore student portal ↗</a>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon icon-blue">▤</div>
+                    <span class="feature-number">02</span>
+                    <h3>Important Topics</h3>
+                    <p>
+                        Access important topics shared by teachers and
+                        focus your study time on the right material.
+                    </p>
+                    <a href="/student_log">View student portal ↗</a>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon icon-pink">◉</div>
+                    <span class="feature-number">03</span>
+                    <h3>Performance Analytics</h3>
+                    <p>
+                        Understand your progress through clear performance
+                        summaries and subject-wise learning insights.
+                    </p>
+                    <a href="/student_log">Track your progress ↗</a>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon icon-green">♧</div>
+                    <span class="feature-number">04</span>
+                    <h3>Teacher Dashboard</h3>
+                    <p>
+                        Let teachers manage student access, organize
+                        important topics, and support their students.
+                    </p>
+                    <a href="/teacher_log">Explore teacher portal ↗</a>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon icon-orange">◎</div>
+                    <span class="feature-number">05</span>
+                    <h3>Student Management</h3>
+                    <p>
+                        Help teachers maintain student records and
+                        manage registration using assigned student IDs.
+                    </p>
+                    <a href="/teacher_log">Teacher access ↗</a>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon icon-cyan">✧</div>
+                    <span class="feature-number">06</span>
+                    <h3>Modern Learning Space</h3>
+                    <p>
+                        Enjoy a clean, responsive interface designed
+                        to make academic information easy to navigate.
+                    </p>
+                    <a href="#get-started">Get started ↗</a>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section" id="get-started">
+            <div class="cta-content">
+                <span class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</span>
+                <h2>Make every study session count.</h2>
+                <p>
+                    Bring your learning goals, progress, and teacher support
+                    together with EduTrack.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="/student_log" class="primary-btn">
+                        Start Learning →
+                    </a>
+                    <a href="/teacher_log" class="secondary-btn">
+                        For Teachers
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a href="/" class="brand">
+            <span class="brand-icon">E</span>
+            EduTrack
+        </a>
+        <p>Learn smarter. Track progress. Grow together.</p>
+        <span>© <%= new Date().getFullYear() %> EduTrack</span>
+    </footer>
+
+    <script src="/features.js"></script>
+    <script src="/js/features.js"></script>
+</body>
+
+</html>

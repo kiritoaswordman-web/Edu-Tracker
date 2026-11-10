@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>EduTrack | Teacher Dashboard</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" href="/styles/teacher-dashboard.css">
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/TeacherDash"><span class="brand-mark">🎓</span><span>Edu<span
+            class="accent">Track</span><small>Teacher Portal</small></span></a>
+      <nav class="side-nav">
+        <a class="nav-item active" href="#overview"><span>⌂</span> Dashboard</a>
+        <a class="nav-item" href="#subjects"><span>⬡</span> My Subjects</a>
+        <a class="nav-item" href="#topics"><span>◇</span> Important Topics</a>
+        <a class="nav-item" href="#students"><span>♧</span> Student List</a>
+        <a class="nav-item" href="#resources"><span>▣</span> Resources</a>
+        <a href="/teacher/assignments" class="sidebar-link">
+          <i class="fa-solid fa-clipboard-list"></i>
+          <span>Assignments</span>
+        </a>
+        <a class="nav-item" href="#profile"><span>♙</span> Profile</a>
+        <a class="nav-item" href="/logout"><span>⚙</span> Log out</a>
+      </nav>
+      <div class="sidebar-promo">
+        <strong>Teach.<br>Track.<br>Grow.</strong>
+        <div class="promo-emoji">👨🏻‍🏫</div>
+        <p>Manage your subjects, students and resources easily with EduTrack.</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="search-box"><span>⌕</span><input id="globalSearch" type="search"
+            placeholder="Search students or important topics..."></div>
+        <div class="profile" id="profile">
+          <span class="avatar">
+            <%= (teacher.name || 'T' ).charAt(0).toUpperCase() %>
+          </span>
+          <span><b>Prof. <%= teacher.name %></b><small>
+              <%= teacher.subject %>
+            </small></span>
+          <a class="profile-menu" href="/logout" title="Log out">⌄</a>
+        </div>
+      </header>
+
+      <section class="welcome-banner" id="overview">
+        <div>
+          <p class="eyebrow">TEACHER WORKSPACE</p>
+          <h1>Welcome back, <%= teacher.name %>!</h1>
+          <p>Manage your subjects, important topics, and stay connected with your students.</p>
+        </div>
+        <div class="banner-art"><span>🎓</span><span>📚</span></div>
+      </section>
+
+      <% if (message) { %>
+        <div class="alert success">
+          <%= message %>
+        </div>
+        <% } %>
+          <% if (error) { %>
+            <div class="alert error">
+              <%= error %>
+            </div>
+            <% } %>
+
+              <section class="stats">
+                <article class="stat stat-blue"><span class="stat-icon">♧</span>
+                  <div><strong>
+                      <%= students.length %>
+                    </strong><small>Total Students</small><em>Approved student records</em></div>
+                </article>
+                <article class="stat stat-purple" id="subjects"><span class="stat-icon">♧</span>
+                  <div><strong>
+                      <%= subjectCount %>
+                    </strong><small>My Subjects</small><em>Unique topics' subjects</em></div>
+                </article>
+                <article class="stat stat-green"><span class="stat-icon">☷</span>
+                  <div><strong>
+                      <%= topics.length %>
+                    </strong><small>Important Topics</small><em>Shared with matching students</em></div>
+                </article>
+                <article class="stat stat-orange"><span class="stat-icon">▤</span>
+                  <div><strong>
+                      <%= resources.length %>
+                    </strong><small>Resources</small><em>Study files and links</em></div>
+                </article>
+              </section>
+
+              <div class="content-grid">
+                <section class="panel topics-panel" id="topics">
+                  <div class="panel-heading">
+                    <div>
+                      <h2>▮ Important Topics</h2>
+                      <p>Add and manage important topics for your subjects.</p>
+                    </div>
+                    <a href="#add-topic" class="primary-btn">＋ Add Important Topic</a>
+                  </div>
+                  <form class="form-grid topic-form" id="add-topic" action="/teacher/topics" method="post">
+                    <label>Topic title<input name="title" placeholder="e.g. Normalization" required
+                        maxlength="120"></label>
+                    <label>Subject<input name="subject" placeholder="e.g. DBMS" required></label>
+                    <label>Branch<select name="branch" required>
+                        <option value="">Choose branch</option>
+                        <option>Computer Science Engineering</option>
+                        <option>Information Technology</option>
+                        <option>Mechanical Engineering</option>
+                        <option>Civil Engineering</option>
+                        <option>Electrical Engineering</option>
+                        <option>Electronics Engineering</option>
+                        <option>CSE</option>
+                      </select></label>
+                    <label>Year<select name="year" required>
+                        <option value="">Choose year</option>
+                        <option>1st Year</option>
+                        <option>2nd Year</option>
+                        <option>3rd Year</option>
+                        <option>4th Year</option>
+                      </select></label>
+                    <label>Priority<select name="priority">
+                        <option value="Normal">Normal</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High Priority</option>
+                      </select></label>
+                    <label class="wide">Description (optional)<textarea name="description" rows="2"
+                        placeholder="What should students focus on?"></textarea></label>
+                    <div class="wide form-actions"><button class="primary-btn" type="submit">＋ Add Important
+                        Topic</button></div>
+                  </form>
+                  <div class="topic-list">
+                    <% if (!topics.length) { %>
+                      <div class="empty">No important topics yet. Add your first topic above.</div>
+                      <% } %>
+                        <% topics.forEach((topic, index)=> { %>
+                          <article class="topic-row searchable"
+                            data-search="<%= (topic.title+' '+topic.subject+' '+topic.branch+' '+topic.year).toLowerCase() %>">
+                            <span class="topic-number topic-n<%= index % 3 %>">
+                              <%= index + 1 %>
+                            </span>
+                            <div class="topic-info">
+                              <h3>
+                                <%= topic.title %>
+                              </h3>
+                              <p>
+                                <%= topic.subject %> <span>·</span>
+                                  <%= topic.branch %> <span>·</span>
+                                    <%= topic.year %>
+                              </p>
+                            </div>
+                            <span class="priority priority-<%= String(topic.priority || 'Normal').toLowerCase() %>">
+                              <%= topic.priority || 'Normal' %>
+                                <%= (topic.priority || '' ).toLowerCase()==='high' ? ' Priority' : '' %>
+                            </span>
+                            <form method="post" action="/teacher/topics/<%= topic._id %>/delete"
+                              onsubmit="return confirm('Delete this important topic?')"><button
+                                class="icon-btn delete-btn" type="submit" aria-label="Delete topic"
+                                title="Delete topic">▤</button></form>
+                          </article>
+                          <% }) %>
+                            <% if (topics.length) { %><a class="view-all" href="#add-topic">Manage all topics →</a>
+                              <% } %>
+                  </div>
+                </section>
+
+                <aside class="panel quick-panel">
+                  <h2>⚡ Quick Access</h2>
+                  <div class="quick-grid">
+                    <a href="#subjects" class="quick-card quick-blue"><span>🎓</span><b>My Subjects</b><small>View and
+                        manage your subjects</small><i>↗</i></a>
+                    <a href="#topics" class="quick-card quick-green"><span>☷</span><b>Important Topics</b><small>Add,
+                        edit and organize topics</small><i>↗</i></a>
+                    <a href="#students" class="quick-card quick-orange"><span>♧</span><b>Student List</b><small>View
+                        student details</small><i>↗</i></a>
+                    <a href="#resources" class="quick-card quick-purple"><span>▣</span><b>Resources</b><small>Upload
+                        notes and study material</small><i>↗</i></a>
+                  </div>
+                </aside>
+
+                <section class="panel students-panel" id="students">
+                  <div class="panel-heading">
+                    <div>
+                      <h2>♧ Student List</h2>
+                      <p>View and manage students approved by you.</p>
+                    </div>
+                    <a class="primary-btn" href="#add-student">＋ Add Student</a>
+                  </div>
+                  <form class="form-grid student-form" id="add-student" action="/teacher/students" method="post">
+                    <label>Student name<input name="name" placeholder="e.g. Rahul Sharma" required></label>
+                    <label>Roll number<input name="rollNumber" placeholder="e.g. 22CS101" required></label>
+                    <label>Branch<select name="branch" required>
+                        <option value="">Choose branch</option>
+                        <option>Computer Science Engineering</option>
+                        <option>Information Technology</option>
+                        <option>Mechanical Engineering</option>
+                        <option>Civil Engineering</option>
+                        <option>Electrical Engineering</option>
+                        <option>Electronics Engineering</option>
+                        <option>CSE</option>
+                      </select></label>
+                    <label>Year<select name="year" required>
+                        <option value="">Choose year</option>
+                        <option>1st Year</option>
+                        <option>2nd Year</option>
+                        <option>3rd Year</option>
+                        <option>4th Year</option>
+                      </select></label>
+                    <div class="wide form-actions"><button class="primary-btn" type="submit">＋ Approve Student</button>
+                    </div>
+                  </form>
+                  <div class="table-tools"><strong>Approved students</strong><input id="studentSearch" type="search"
+                      placeholder="Search name or roll number..."></div>
+                  <div class="table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Name</th>
+                          <th>Roll Number</th>
+                          <th>Branch</th>
+                          <th>Year</th>
+                          <th>Registration</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody id="studentTable">
+                        <% if (!students.length) { %>
+                          <tr>
+                            <td colspan="7" class="empty">No students added yet.</td>
+                          </tr>
+                          <% } %>
+                            <% students.forEach((student, index)=> { %>
+                              <tr class="searchable"
+                                data-search="<%= (student.name+' '+student.rollNumber+' '+student.branch+' '+student.year).toLowerCase() %>">
+                                <td>
+                                  <%= index + 1 %>
+                                </td>
+                                <td><strong>
+                                    <%= student.name %>
+                                  </strong></td>
+                                <td><code><%= student.rollNumber %></code></td>
+                                <td>
+                                  <%= student.branch %>
+                                </td>
+                                <td>
+                                  <%= student.year %>
+                                </td>
+                                <td><span class="status <%= student.registered ? 'registered' : 'pending' %>">
+                                    <%= student.registered ? 'Registered' : 'Pending' %>
+                                  </span></td>
+                                <td>
+                                  <form method="post" action="/teacher/students/<%= student._id %>/delete"
+                                    onsubmit="return confirm('Delete this student and their registration access?')">
+                                    <button class="icon-btn delete-btn" type="submit"
+                                      aria-label="Delete student">⌫</button></form>
+                                </td>
+                              </tr>
+                              <% }) %>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+
+                <section class="panel resources-panel" id="resources">
+                  <div class="panel-heading">
+                    <div>
+                      <h2>▣ Latest Resources</h2>
+                      <p>Study materials you have shared.</p>
+                    </div><a href="#add-resource" class="view-all">Add resource →</a>
+                  </div>
+                  <form class="form-grid resource-form" id="add-resource" action="/teacher/resources" method="post">
+                    <label>Resource title<input name="title" required placeholder="e.g. DBMS Notes"></label>
+                    <label>Subject<input name="subject" required placeholder="e.g. DBMS"></label>
+                    <label>Resource URL<input name="url" type="url" required placeholder="https://..."></label>
+                    <label>Branch<select name="branch" required>
+                        <option value="">Choose branch</option>
+                        <option>Computer Science Engineering</option>
+                        <option>Information Technology</option>
+                        <option>Mechanical Engineering</option>
+                        <option>Civil Engineering</option>
+                        <option>Electrical Engineering</option>
+                        <option>Electronics Engineering</option>
+                        <option>CSE</option>
+                      </select></label>
+                    <label>Year<select name="year" required>
+                        <option value="">Choose year</option>
+                        <option>1st Year</option>
+                        <option>2nd Year</option>
+                        <option>3rd Year</option>
+                        <option>4th Year</option>
+                      </select></label>
+                    <div class="wide form-actions"><button class="primary-btn" type="submit">＋ Add Resource</button>
+                    </div>
+                  </form>
+                  <div class="resource-list">
+                    <% if (!resources.length) { %>
+                      <div class="empty">No resources yet. Add a URL to a PDF, notes page, or study material.</div>
+                      <% } %>
+                        <% resources.forEach(resource=> { %><article class="resource-row"><span
+                              class="file-icon">↗</span>
+                            <div><b>
+                                <%= resource.title %>
+                              </b><small>
+                                <%= resource.subject %> · <%= resource.branch %> · <%= resource.year %>
+                              </small></div><a href="<%= resource.url %>" target="_blank" rel="noopener noreferrer"
+                              aria-label="Open resource">↗</a>
+                          </article>
+                          <% }) %>
+                  </div>
+                </section>
+              </div>
+              <footer>EduTrack · Learn smarter. Track progress. Grow together.</footer>
+    </main>
+  </div>
+  <script src="/js/teacher-dashboard.js"></script>
+</body>
+
+</html>

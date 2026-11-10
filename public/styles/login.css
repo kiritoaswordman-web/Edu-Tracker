@@ -1,0 +1,192 @@
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: #f5f7ff;
+        }
+
+        /* Main Login Card */
+        .Teacher_log {
+            width: 100%;
+            max-width: 380px;
+            background: #ffffff;
+            padding: 30px 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(40, 50, 100, 0.08);
+            text-align: center;
+        }
+
+        /* Logo Section */
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            font-size: 64px;
+            color: #493cff;
+            margin-bottom: 2px;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #172fbd;
+        }
+
+        /* Heading */
+        .heading {
+            margin-bottom: 26px;
+        }
+
+        .heading h2 {
+            font-size: 23px;
+            color: #111827;
+            margin-bottom: 9px;
+        }
+
+        .heading p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #64748b;
+        }
+
+        /* Form */
+        .Teacher_log form {
+            width: 100%;
+        }
+
+        /* Input Fields */
+        .input-box {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 54px;
+            border: 2px solid #e4eaf5;
+            border-radius: 10px;
+            padding: 0 13px;
+            gap: 12px;
+            margin-bottom: 20px;
+            background: #ffffff;
+            transition: 0.25s ease;
+        }
+
+        .input-box:focus-within {
+            border-color: #5145ff;
+            box-shadow: 0 0 0 3px rgba(81, 69, 255, 0.08);
+        }
+
+        .input-box .material-symbols-outlined {
+            font-size: 23px;
+            color: #526b95;
+        }
+
+        .input-box input {
+            width: 100%;
+            min-width: 0;
+            height: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 15px;
+            color: #334155;
+        }
+
+        .input-box input::placeholder {
+            color: #64748b;
+            opacity: 1;
+        }
+
+        /* Login Button */
+        .login-btn {
+            width: 100%;
+            height: 52px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(100deg, #5145ff, #4938f5);
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(73, 56, 245, 0.18);
+            transition: 0.25s ease;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(100deg, #4034ed, #3728df);
+            transform: translateY(-1px);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Forgot Password */
+        .forgot {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 16px;
+            margin-bottom: 32px;
+        }
+
+        .forgot a {
+            color: #3029e8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .forgot a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #64748b;
+        }
+
+        .footer a {
+            color: #1e293b;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #493cff;
+        }
+
+        /* Responsive */
+        @media (max-width: 420px) {
+            body {
+                padding: 12px;
+            }
+
+            .Teacher_log {
+                padding: 28px 20px;
+            }
+
+            .logo-icon {
+                font-size: 58px;
+            }
+
+            .logo h1 {
+                font-size: 26px;
+            }
+
+            .heading h2 {
+                font-size: 22px;
+            }
+        }

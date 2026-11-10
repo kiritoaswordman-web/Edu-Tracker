@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓EduTrack | Teacher Registration</title>
+    <link rel="stylesheet" href="/css/teacher-register.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/teacher_register/style.css">
+</head>
+
+
+<body>
+
+    <div class="app-layout">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="/" class="brand">
+                <div class="brand-icon">E</div>
+                <span>Edu<span class="brand-highlight">Track</span></span>
+            </a>
+
+            <p class="menu-label">MAIN MENU</p>
+
+            <nav class="sidebar-nav">
+                <a href="/" class="nav-link">
+                    <span class="nav-icon">⌂</span>
+                    Dashboard
+                </a>
+
+                <a href="/teacher_register" class="nav-link active">
+                    <span class="nav-icon">♙</span>
+                    Teachers
+                </a>
+
+                <a href="/student_register" class="nav-link">
+                    <span class="nav-icon">♧</span>
+                    Students
+                </a>
+
+                <a href="/courses" class="nav-link">
+                    <span class="nav-icon">▤</span>
+                    Courses & Subjects
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="help-card">
+                    <div class="help-icon">✦</div>
+                    <h3>Need help?</h3>
+                    <p>Manage your college effortlessly with EduTrack.</p>
+                    <a href="mailto:support@edutrack.example">Contact Support ↗</a>
+                </div>
+                <p class="sidebar-footer">© 2026 EduTrack</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <p class="breadcrumb">Management / Teachers</p>
+                    <h2>Teacher Management</h2>
+                </div>
+
+                <div class="admin-profile">
+                    <div class="avatar">A</div>
+                    <div>
+                        <strong>College Admin</strong>
+                        <span>Administrator</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="page-heading">
+                <div>
+                    <span class="eyebrow">TEACHER DIRECTORY</span>
+                    <h1>Register a Teacher</h1>
+                    <p>Add a new faculty member to your college database.</p>
+                </div>
+                <a href="/teacher_log" class="back-button">← View Teachers</a>
+            </section>
+
+            <section class="form-card">
+
+                <div class="form-banner">
+                    <div class="banner-symbol">✦</div>
+                    <div>
+                        <h2>Faculty Registration</h2>
+                        <p>Enter the teacher's details to create a new record.</p>
+                    </div>
+                    <span class="status-badge">● New Record</span>
+                </div>
+
+               <form action="/teacher/register" method="POST">
+
+                    <div class="section-title">
+                        <span class="section-number">01</span>
+                        <div>
+                            <h3>Personal & College Details</h3>
+                            <p>Basic information about the faculty member</p>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+
+                        <div class="form-group full-width">
+                            <label for="college">College Name <span>*</span></label>
+                            <input type="text" name="college" id="college" placeholder="Enter your college name"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Teacher Name <span>*</span></label>
+                            <input type="text" name="name" id="name" placeholder="Enter full name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="teacherId">Teacher ID <span>*</span></label>
+                            <input type="number" name="teacherId" id="teacherId" placeholder="e.g. 1001" min="1"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject <span>*</span></label>
+                            <input type="text" name="subject" id="subject" placeholder="e.g. Computer Science" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address <span>*</span></label>
+                            <input type="email" name="email" id="email" placeholder="teacher@college.edu" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Create Password <span>*</span></label>
+                            <input type="password" name="password" id="password"
+                                placeholder="Create a password" minlength="8"
+                                autocomplete="new-password" required>
+                        </div>
+
+                    </div>
+
+                    <div class="form-note">
+                        <span>ⓘ</span>
+                        Please verify all details before submitting the registration form.
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="reset" class="reset-button">Clear Form</button>
+                        <button type="submit" class="submit-button">
+                            Register Teacher <span>→</span>
+                        </button>
+                    </div>
+
+                </form>
+            </section>
+
+            <footer class="main-footer">
+                EduTrack <span>•</span> Simplifying College Management
+            </footer>
+
+        </main>
+    </div>
+
+</body>
+
+</html>

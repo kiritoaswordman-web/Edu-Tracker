@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | EduTrack</title>
+
+    <link rel="stylesheet" href="/styles/student-profile.css">
+</head>
+
+<body>
+
+    <div class="profile-layout">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="/student/dashboard" class="brand">
+                <span class="brand-logo">🎓</span>
+                <span>Edu<span class="brand-blue">Track</span>
+                    <small>Student Portal</small>
+                </span>
+            </a>
+
+            <nav class="navigation">
+                <a href="/student/dashboard"><span>⌂</span> Dashboard</a>
+                <a href="/student/dashboard#topics"><span>▤</span> Important Topics</a>
+                <a href="/student/dashboard#resources"><span>▣</span> Resources</a>
+                <a href="/student/profile" class="active"><span>♙</span> My Profile</a>
+                <a href="/logout"><span>↪</span> Logout</a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-emoji">📚</div>
+                <h3>Keep Learning!</h3>
+                <p>Small steps every day lead to big achievements.</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <p class="top-label">STUDENT PORTAL</p>
+                    <h2>My Profile</h2>
+                </div>
+
+                <a href="/student/dashboard" class="back-button">
+                    ← Dashboard
+                </a>
+            </header>
+
+            <% if (message) { %>
+                <div class="notice success">
+                    <%= message %>
+                </div>
+                <% } %>
+
+                    <% if (error) { %>
+                        <div class="notice error">
+                            <%= error %>
+                        </div>
+                        <% } %>
+
+                            <!-- Profile Hero -->
+                            <section class="profile-hero">
+                                <div class="profile-avatar">
+                                    <%= (student.name || 'S' ).charAt(0).toUpperCase() %>
+                                </div>
+
+                                <div class="hero-details">
+                                    <span class="verified">✓ STUDENT ACCOUNT</span>
+                                    <h1>
+                                        <%= student.name %>
+                                    </h1>
+                                    <p>
+                                        <%= student.branch %> · <%= student.year %>
+                                    </p>
+
+                                    <div class="hero-tags">
+                                        <span>Roll No: <%= student.rollNumber %></span>
+                                        <span class="account-status">Active Account</span>
+                                    </div>
+                                </div>
+
+                                <div class="hero-decoration">✦</div>
+                            </section>
+
+                            <!-- Information Cards -->
+                            <section class="profile-grid">
+
+                                <article class="profile-card">
+                                    <div class="card-heading">
+                                        <div class="card-icon blue-icon">♙</div>
+                                        <div>
+                                            <h3>Personal Information</h3>
+                                            <p>Your student account details</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="detail-list">
+                                        <div class="detail-row">
+                                            <span>Full Name</span>
+                                            <strong>
+                                                <%= student.name %>
+                                            </strong>
+                                        </div>
+
+                                        <div class="detail-row">
+                                            <span>Roll Number</span>
+                                            <strong>
+                                                <%= student.rollNumber %>
+                                            </strong>
+                                        </div>
+
+                                        <div class="detail-row">
+                                            <span>Branch</span>
+                                            <strong>
+                                                <%= student.branch %>
+                                            </strong>
+                                        </div>
+
+                                        <div class="detail-row">
+                                            <span>Academic Year</span>
+                                            <strong>
+                                                <%= student.year %>
+                                            </strong>
+                                        </div>
+
+                                        <% if (student.email) { %>
+                                            <div class="detail-row">
+                                                <span>Email Address</span>
+                                                <strong class="email-value">
+                                                    <%= student.email %>
+                                                </strong>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                </article>
+
+                                <article class="profile-card">
+                                    <div class="card-heading">
+                                        <div class="card-icon purple-icon">✧</div>
+                                        <div>
+                                            <h3>Academic Information</h3>
+                                            <p>Your current academic profile</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="academic-highlight">
+                                        <span class="academic-symbol">🎓</span>
+                                        <div>
+                                            <small>YOUR DEPARTMENT</small>
+                                            <h3>
+                                                <%= student.branch %>
+                                            </h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="detail-list">
+                                        <div class="detail-row">
+                                            <span>Academic Year</span>
+                                            <strong>
+                                                <%= student.year %>
+                                            </strong>
+                                        </div>
+
+                                        <div class="detail-row">
+                                            <span>Student ID</span>
+                                            <strong>
+                                                <%= student.rollNumber %>
+                                            </strong>
+                                        </div>
+
+                                        <div class="detail-row">
+                                            <span>Profile Status</span>
+                                            <strong class="status-active">● Active</strong>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="profile-card security-card">
+                                    <div class="card-heading">
+                                        <div class="card-icon green-icon">✓</div>
+                                        <div>
+                                            <h3>Account Information</h3>
+                                            <p>Keep your account secure</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="security-message">
+                                        <span class="security-check">✓</span>
+                                        <div>
+                                            <strong>Your account is connected</strong>
+                                            <p>You are viewing information from your EduTrack student account.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="security-note">
+                                        <strong>Need to update your details?</strong>
+                                        <p>Contact your teacher or college administrator to correct your registered
+                                            information.</p>
+                                    </div>
+
+                                    <a href="/logout" class="logout-button">Log Out ↗</a>
+                                </article>
+
+                            </section>
+
+                            <footer class="page-footer">
+                                EduTrack · Learn smarter. Track progress. Grow together.
+                            </footer>
+
+        </main>
+    </div>
+
+</body>
+
+</html>

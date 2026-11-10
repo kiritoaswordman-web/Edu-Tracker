@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓EduTrack - Student Login</title>
+
+  
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <link rel="stylesheet" href="/styles/login.css">
+</head>
+
+<body>
+
+    <div class="Teacher_log">
+
+        <div class="logo">
+            <span class="material-symbols-outlined logo-icon">
+                school
+            </span>
+            <h1>EduTrack</h1>
+        </div>
+
+
+        <div class="heading">
+            <h2>Student Login</h2>
+            <p>
+                Login to view your performance<br>
+               and study recommendations
+            </p>
+        </div>
+
+       
+        <form action="/student/login" method="post">
+
+         
+            <div class="input-box">
+                <span class="material-symbols-outlined">
+                    person
+                </span>
+
+                <input type="text" name="rollNumber" placeholder="Roll Number" autocomplete="username" required id="Student_log_rollNumber">
+            </div>
+
+            
+            <div class="input-box">
+                <span class="material-symbols-outlined">
+                    lock
+                </span>
+
+                <input type="password" name="password" placeholder="Password" autocomplete="current-password" required id="Student_log_password">
+            </div>
+
+         
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+
+            <div class="forgot">
+                <a href="/forgot-password">Forgot Password?</a>
+            </div>
+
+        </form>
+
+   
+        <div class="footer">
+            Don't have an account?
+            <a href="/student_register">Register</a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>EduTrack | Student Dashboard</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" href="/styles/student-dashboard.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/student/dashboard"><span class="brand-mark">🎓</span><span>Edu<span
+            class="brand-accent">Track</span><small>Student Portal</small></span></a>
+      <nav class="side-nav" aria-label="Student navigation">
+        <a class="nav-item active" href="/student/dashboard"><span>⌂</span>Dashboard</a>
+        <a class="nav-item" href="#subjects"><span>⬡</span>My Subjects</a>
+        <a class="nav-item" href="#topics"><span>◇</span>Important Topics</a>
+        <a class="nav-item" href="#performance"><span>▥</span>My Performance</a>
+        <a class="nav-item" href="#schedule"><span>▦</span>Weekly Schedule</a>
+        <a class="nav-item" href="#resources"><span>▣</span>Resources</a>
+        <a class="nav-item" href="/student/profile"><span>♙</span>Profile</a>
+        <a class="nav-item" href="/logout"><span>⇥</span>Logout</a>
+      </nav>
+      <div class="sidebar-promo">
+        <div class="promo-cap">🎓</div>
+        <h3>Learn.<br>Track.<br>Grow.</h3>
+        <p>Your journey matters.<br>Keep moving forward!</p>
+        <div class="promo-books">📚</div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <label class="search-box"><span>⌕</span><input id="dashboardSearch" type="search"
+            placeholder="Search subjects, topics, or resources..." aria-label="Search dashboard"></label>
+        <div class="topbar-right"><span class="topbar-cap">✦</span>
+          <div class="avatar">
+            <%= (student.name || 'S' ).charAt(0).toUpperCase() %>
+          </div>
+          <div class="profile-summary"><strong>
+              <%= student.name %>
+            </strong><small>
+              <%= student.branch %> · <%= student.rollNumber %>
+            </small></div><a class="profile-chevron" href="/student/profile" aria-label="Open profile">⌄</a>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <section class="welcome-banner">
+          <div>
+            <p class="eyebrow">YOUR PERSONAL LEARNING SPACE</p>
+            <h1>Welcome back, <%= (student.name || 'Student' ).split(' ')[0] %>!</h1><p>Check your important topics, learning resources, and keep your academic goals on track.</p></div>
+        <div class="welcome-art"><div class="welcome-date">✦ YOUR LEARNING JOURNEY</div><span class="cap-art">🎓</span><span class="book-art">📚</span></div>
+      </section>
+
+      <section class="stats-grid" aria-label="Student summary">
+        <article class="stat-card stat-blue"><div class="stat-icon">♧</div><div><p>Roll Number</p><strong class="roll-stat"><%= student.rollNumber %></strong><small>Registered student</small></div></article>
+        <article class="stat-card stat-purple" id="subjects"><div class="stat-icon">▤</div><div><p>Subjects</p><strong><%= subjects.length %></strong><small>Your learning subjects</small></div></article>
+        <article class="stat-card stat-green"><div class="stat-icon">☷</div><div><p>Important Topics</p><strong><%= topics.length %></strong><small>Shared by your teachers</small></div></article>
+        <article class="stat-card stat-orange"><div class="stat-icon">▣</div><div><p>Resources</p><strong><%= resources.length %></strong><small>Study links available</small></div></article>
+      </section>
+
+      <div class="dashboard-grid">
+        <div class="left-column">
+          <section class="panel topics-panel" id="topics">
+            <div class="panel-heading"><div class="heading-icon blue">▮</div><div class="heading-copy"><h2>Important Topics</h2><p>Key topics shared by your teacher for your class.</p></div><span class="panel-count"><%= topics.length %> topics</span></div>
+            <% if (!topics.length) { %>
+              <div class="empty-state">
+                <span class="empty-icon">✦</span>
+                <strong>No important topics yet</strong>
+                <span>Topics added by your teacher for your branch and year will appear here.</span>
+              </div>
+            <% } else { %>
+              <div class="topic-list">
+                <%
+                  const colors = ['topic-blue', 'topic-purple', 'topic-green', 'topic-orange', 'topic-pink'];
+                %>
+                <% topics.slice(0, 5).forEach((topic, index) => { %>
+                  <article class="topic-row searchable"
+                    data-search="<%= [topic.title, topic.subject, topic.description, topic.branch, topic.year].filter(Boolean).join(' ').toLowerCase() %>">
+                    <div class="topic-number <%= colors[index % colors.length] %>"><%= index + 1 %></div>
+                    <div class="topic-info">
+                      <h3><%= topic.title || 'Untitled topic' %></h3>
+                      <p><%= topic.subject || 'General' %> · <%= topic.branch || student.branch %> · <%= topic.year || student.year %></p>
+                      <% if (topic.description) { %>
+                        <small><%= topic.description %></small>
+                      <% } %>
+                    </div>
+                    <span class="priority priority-<%= String(topic.priority || 'Normal').toLowerCase() %>">
+                      <%= topic.priority || 'Normal' %>
+                    </span>
+                  </article>
+                <% }) %>
+              </div>
+              <% if (topics.length > 5) { %>
+                <p class="more-note">Showing 5 of <%= topics.length %> topics.</p>
+              <% } %>
+            <% } %>
+          </section>
+
+        <section class="panel performance-panel" id="performance">
+          <div class="panel-heading">
+            <div class="heading-icon purple">▥</div>
+            <div class="heading-copy">
+              <h2>My Performance</h2>
+              <p>Your academic results and progress.</p>
+            </div>
+          </div>
+          <div class="performance-placeholder">
+            <div class="performance-symbol">↗</div>
+            <div><strong>Performance data will appear here</strong>
+              <p>Your profile currently stores registration details only. Once marks or performance records are added,
+                this section can show subject-wise progress.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="right-column">
+        <section class="panel profile-panel">
+          <div class="panel-heading">
+            <div class="heading-icon blue">♙</div>
+            <div class="heading-copy">
+              <h2>My Profile</h2>
+              <p>Your registered student details.</p>
+            </div>
+          </div>
+          <div class="profile-card">
+            <div class="large-avatar">
+              <%= (student.name || 'S' ).charAt(0).toUpperCase() %>
+            </div>
+            <div>
+              <h3>
+                <%= student.name %>
+              </h3>
+              <p>
+                <%= student.email %>
+              </p>
+            </div>
+          </div>
+          <div class="detail-row"><span>Roll Number</span><strong>
+              <%= student.rollNumber %>
+            </strong></div>
+          <div class="detail-row"><span>Branch</span><strong>
+              <%= student.branch %>
+            </strong></div>
+          <div class="detail-row"><span>Academic Year</span><strong>
+              <%= student.year %>
+            </strong></div>
+          <a class="profile-link" href="/student/profile">View profile details →</a>
+        </section>
+
+        <section class="panel resources-panel" id="resources">
+          <div class="panel-heading">
+            <div class="heading-icon blue">▣</div>
+            <div class="heading-copy">
+              <h2>Latest Resources</h2>
+              <p>Study material shared for your class.</p>
+            </div>
+          </div>
+          <% if (!resources.length) { %>
+            <div class="empty-state compact"><strong>No resources yet</strong><span>Your teacher's study links will show
+                up here.</span></div>
+            <% } else { %>
+              <div class="resource-list">
+                <% resources.slice(0,5).forEach(resource=> { %><article class="resource-row searchable"
+                    data-search="<%= (resource.title+' '+resource.subject+' '+resource.branch+' '+resource.year).toLowerCase() %>">
+                    <span class="file-icon">↗</span>
+                    <div><strong>
+                        <%= resource.title %>
+                      </strong><small>
+                        <%= resource.subject %> · <%= resource.branch %>
+                      </small></div><a href="<%= resource.url %>" target="_blank" rel="noopener noreferrer"
+                      aria-label="Open <%= resource.title %>">↓</a>
+                  </article>
+                  <% }) %>
+              </div>
+              <% } %>
+        </section>
+
+        <section class="panel schedule-panel" id="schedule">
+          <div class="panel-heading">
+            <div class="heading-icon orange">▦</div>
+            <div class="heading-copy">
+              <h2>Weekly Learning</h2>
+              <p>A simple plan for this week.</p>
+            </div>
+          </div>
+          <div class="schedule-tip"><span>📅</span>
+            <div><strong>Stay consistent</strong>
+              <p>Choose one important topic and one resource to study each day.</p>
+            </div>
+          </div>
+          <div class="week-days">
+            <span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
+          </div>
+          <p class="schedule-note">Your teacher's timetable is not configured yet.</p>
+        </section>
+      </div>
+  </div>
+  <footer class="page-footer">EduTrack · Learn smarter, one topic at a time.</footer>
+  </div>
+  </main>
+  </div>
+  <script src="/js/student-dashboard.js"></script>
+</body>
+
+</html>

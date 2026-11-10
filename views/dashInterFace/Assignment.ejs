@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    form{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+
+    }
+    input{
+        color: rebeccapurple;
+        background-color: red;
+    }
+</style>
+<body>
+    <h1> that a assignment page </h1>
+    <form action="/assignment" method="post">
+        <input type="text" name="title" placeholder="Assignment title" required>
+        <textarea name="description" placeholder="Assignment description" required></textarea>
+        <input type="text" name="subject" placeholder="subject" required>
+        <input type="date" name="dueDate" required>
+
+
+        <button type="submit">Create Assignment</button>
+    </form>
+</body>
+</html>
